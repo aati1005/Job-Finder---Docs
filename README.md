@@ -1,40 +1,36 @@
-# Atif Job Search Dashboard
+# Atif Job Finder Pro — Advanced
 
-A Streamlit job-search dashboard for CV-aware matching of Document Control, Oracle Aconex/EDMS, Handover/Closeout, project coordination, procurement documentation and QA/QC documentation roles.
+A Streamlit dashboard for targeted document-control and construction-documentation job searches, CV keyword matching, filters, local country job-portal links, and application tracking.
 
-## Latest updates
-- Faster search: one combined search per country instead of repeating a search for every job title.
-- Bayt disabled by default because repeated 404 errors were occurring; Indeed and LinkedIn are available.
-- Upload your actual CV files in the sidebar (PDF, DOCX or TXT). This works locally and on Streamlit Community Cloud; no fixed Windows folder path is required.
-- Choose countries, job families, posting age, results per country and minimum match score.
-- Filter and inspect job descriptions, open job links, and download results as CSV or Excel.
-- The ZIP does not contain personal CVs or other private documents.
+## What's new
+- 38 multi-select job titles related to Document Control, Oracle Aconex/EDMS, construction, QA/QC, handover/closeout, records, procurement, project support, and documentation.
+- Expanded target countries across the GCC, Europe, Canada, and Australia.
+- Per-country + per-title searches rather than one shared OR query for every country, reducing the same few jobs appearing everywhere.
+- Selectable job-board connectors (Indeed, LinkedIn, Glassdoor, Bayt, Naukri, BDJobs); site/country support and availability vary. Some sites may block automated searches.
+- Country-specific direct links to local job portals, including government portals where available. These direct portals are links, not scraped feeds.
+- Advanced filters: country, role, board, application status, match-score range, keyword/company/location, posting age, job type, remote-only.
+- Application tracker: To Apply, Saved, Applied, Follow-up, Interview, Rejected, Closed; date applied, follow-up date, priority, notes.
+- Import/export tracker CSV and export Excel.
+- Upload CVs in the app; no CVs are included in this repository.
 
-## Run on Windows
-1. Extract this ZIP into a normal folder.
-2. Install Python 3.11 or newer from https://www.python.org/downloads/ if needed. During setup, select **Add Python to PATH**.
-3. Double-click `Run_Atif_Job_Dashboard.bat`.
-4. When Streamlit opens in your browser, upload your six actual CVs in the left sidebar and press **Search jobs**.
+## Deploy to Streamlit Community Cloud
+1. Replace the existing repository's `app.py`, `requirements.txt`, and `README.md` with these files (do not upload personal CVs).
+2. Commit changes to the `main` branch.
+3. Streamlit Community Cloud will normally detect the GitHub update and redeploy. If it does not, open Manage app and reboot/redeploy.
+4. Open the app, upload your CV files in the sidebar, select countries/titles/boards, and press **Search jobs**.
 
-If Windows blocks the BAT file, open Command Prompt in this folder and run:
-```bat
+## Recommended first search
+Start with 3–5 countries and 5–8 titles. The app searches each selected title in each selected country, so selecting everything at once may take a long time and can trigger rate limits.
+
+## Local run
+```bash
 python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-## Free online hosting (Streamlit Community Cloud)
-1. Create/sign in to GitHub: https://github.com/signup
-2. Create a repository, e.g. `atif-job-dashboard`.
-3. Upload `app.py`, `requirements.txt`, and this `README.md`. Do **not** upload CVs, passports, certificates, bank statements, passwords, or other private files.
-4. Open https://share.streamlit.io/ and connect GitHub.
-5. Choose **Create app**, select your repository and branch, and set the app file to `app.py`; then deploy.
-6. Open the app URL and upload your CV files through the sidebar.
-
-**Privacy note:** GitHub repository code can be visible to others if you choose a public repository. Keep personal documents out of GitHub. CVs uploaded in the app are processed for text matching during the session; do not upload documents you do not want processed by the hosted service. The app does not need your CV files stored in the repository.
-
-## Notes / limitations
-- Job board access and results vary. Sites may block automated searches, return incomplete results, or change their behavior; this tool cannot guarantee every vacancy will appear.
-- Verify every vacancy and employer on the official application page, including work-permit eligibility.
-- The dashboard does not log into accounts or apply for jobs automatically.
-- On Streamlit Community Cloud, local files written by the app are temporary and may disappear after a restart. Use the CSV/Excel download buttons to keep your results.
-- Scanned PDFs may not contain selectable text; those may need OCR before upload.
+## Privacy and limitations
+- Do not commit CVs, passports, certificates, bank statements, passwords, or other sensitive documents to GitHub.
+- Uploaded CV text is used for matching in the active session. Do not upload anything you do not want processed by the hosted service.
+- Job board results can be incomplete, duplicated, blocked, or stale. Local portal links open the site's own search page and are not represented as live scraped results.
+- The application tracker is held in the active app session. Download CSV/Excel regularly and re-import the CSV next time, because hosted memory may reset.
+- This app does not sign into accounts or apply automatically.
